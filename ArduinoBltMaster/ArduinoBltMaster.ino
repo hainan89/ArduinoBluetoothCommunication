@@ -3,6 +3,8 @@
 /* Include the software serial port library */
 #include <SoftwareSerial.h>
 /* to communicate with the Bluetooth module's TXD pin */
+// HC05 RXD <-> 11
+// HC05 TXD <-> 10
 #define BT_SERIAL_TX 10
 /* to communicate with the Bluetooth module's RXD pin */
 #define BT_SERIAL_RX 11
@@ -10,9 +12,9 @@
 SoftwareSerial BluetoothSerial(BT_SERIAL_TX, BT_SERIAL_RX);
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(57600);
   /* Set the baud rate for the software serial port */
-  BluetoothSerial.begin(115200); // Initialise BlueTooth
+  BluetoothSerial.begin(57600); // 115200 过高数据传输存在误码率，57600最高Baud
   delay(1000);
   BluetoothSerial.println("Starting ...");
 }
